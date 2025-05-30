@@ -4,7 +4,10 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 module.exports = {
-  reactStrictMode: true,
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
