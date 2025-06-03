@@ -1,7 +1,28 @@
+'use client';
+
 import Navbar from '../../components/Navbar';
 import Image from 'next/image';
 import { SiNextdotjs, SiDjango, SiPostgresql, SiTailwindcss, SiTypescript } from 'react-icons/si';
 import { FaGithub } from 'react-icons/fa';
+
+// Componente del cliente para el botón de GitHub
+function GitHubButton() {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open('https://github.com/AlejandroLargo1031/App_Habitos', '_blank');
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors"
+    >
+      <FaGithub className="w-5 h-5" />
+      <span>Ver en GitHub</span>
+    </button>
+  );
+}
 
 export default function Projects() {
   return (
@@ -18,7 +39,12 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-gray-800 rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <a 
+            href="https://app-habitos-ruddy.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block bg-gray-800 rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer"
+          >
             <div className="relative h-64 w-full">
               <Image
                 src="/app-dashboard.png"
@@ -74,26 +100,13 @@ export default function Projects() {
               </div>
 
               <div className="flex justify-between items-center">
-                <a
-                  href="https://github.com/AlejandroLargo1031/App_Habitos"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors"
-                >
-                  <FaGithub className="w-5 h-5" />
-                  <span>Ver en GitHub</span>
-                </a>
-                <a
-                  href="https://app-habitos-ruddy.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
-                >
+                <GitHubButton />
+                <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
                   Ver Demo
-                </a>
+                </span>
               </div>
             </div>
-          </div>
+          </a>
         </div>
 
         <div className="text-center mt-16">
