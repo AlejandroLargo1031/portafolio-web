@@ -10,7 +10,7 @@ const PROGRAMMING_LANGUAGES: ProgrammingLanguage[] = [
     { name: "TypeScript", color: "#017acb", image: "/images/typescript.png" },
     { name: "Node JS", color: "#339933", image: "/images/node.png" },
     { name: "Remix", color: "white", image: "/images/remix.png" },
-    { name: "MongoDB", color: "white", image: "/images/mongodb.jpg" },
+    { name: "MongoDB", color: "white", image: "/images/mongodb.png" },
     { name: "PostgreSQL", color: "#336791", image: "/images/postgres.png" },
   ];
   
