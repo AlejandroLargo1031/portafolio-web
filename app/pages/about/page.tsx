@@ -176,6 +176,47 @@ export default function About() {
               Formación Académica
             </h2>
             <div className="max-w-3xl mx-auto space-y-8">
+              {/*
+                Nueva experiencia educativa - Parquesoft TI
+              */}
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <div className="flex items-start gap-6">
+                  <div className="w-20 h-20 relative flex-shrink-0 bg-gray-600 rounded-lg flex items-center justify-center">
+                    {/* Espacio para la foto de Parquesoft TI */}
+                    <Image
+                      src="/software-development-full-stack.png"
+                      alt="Parquesoft-Ti"
+                      fill
+                      className="object-contain rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-semibold text-purple-400">
+                      Curso Intensivo en Desarrollo de Software Full Stack
+                    </h3>
+                    <p className="text-gray-400">Parquesoft TI — Colombia</p>
+                    <p className="text-gray-400">Agosto 2024 - Abril 2025</p>
+                    <p className="text-gray-300 mt-4">
+                      Formación práctica de siete meses orientada al desarrollo de soluciones completas, 
+                      integrando tecnologías de frontend y backend. Durante el programa, fortalecí mis 
+                      habilidades en bases de datos relacionales, desarrollo de APIs, servidores web, 
+                      control de versiones y pruebas de software. Las clases en vivo con tutores expertos 
+                      facilitaron una experiencia de aprendizaje inmersiva y enfocada en buenas prácticas 
+                      y metodologías ágiles.
+                    </p>
+                    <ul className="text-gray-300 mt-4 space-y-2 list-disc list-inside">
+                      <li>Participé en proyectos colaborativos enfocados en resolver problemas reales mediante soluciones innovadoras.</li>
+                      <li>Apliqué tecnologías modernas en entornos de desarrollo reales, consolidando un enfoque full stack.</li>
+                      <li>Fui parte activa de iniciativas académicas e investigativas, trabajando con equipos multidisciplinarios y fomentando el pensamiento crítico y la creatividad técnica.</li>
+                      <li>Actualmente, sigo perfeccionando mis capacidades para aportar soluciones escalables, eficientes y alineadas con los desafíos actuales del desarrollo de software.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/*
+                Experiencia existente - Universidad del Valle
+              */}
               <div className="bg-gray-700 p-6 rounded-lg">
                 <div className="flex items-start gap-6">
                   <div className="w-20 h-20 relative flex-shrink-0">
@@ -242,6 +283,7 @@ export default function About() {
             </a>
           </div>
         </div>
+
       </div>
     </>
   );
