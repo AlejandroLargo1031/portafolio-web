@@ -2,8 +2,12 @@
 
 import Navbar from '../../components/Navbar';
 import Image from 'next/image';
-import { SiNextdotjs, SiDjango, SiPostgresql, SiTailwindcss, SiTypescript } from 'react-icons/si';
+import { SiNextdotjs, SiDjango, SiPostgresql, SiTailwindcss, SiTypescript, SiPrisma, SiShadcnui } from 'react-icons/si';
 import { FaGithub } from 'react-icons/fa';
+import { RiSupabaseLine } from 'react-icons/ri';
+import { GrSecure } from 'react-icons/gr';
+import { ImStatsBars } from 'react-icons/im';
+import { SiSwagger } from 'react-icons/si';
 
 // Componente del cliente para el botón de GitHub
 function GitHubButton() {
@@ -34,79 +38,186 @@ export default function Projects() {
             Mis Proyectos
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Explora mi portafolio de proyectos donde aplico mis habilidades y conocimientos en desarrollo web.
+            Explora mi portafolio de proyectos donde aplico mis habilidades y
+            conocimientos en desarrollo web.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <a 
-            href="https://app-habitos-ruddy.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block bg-gray-800 rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer"
-          >
-            <div className="relative h-64 w-full">
-              <Image
-                src="/app-dashboard.png"
-                alt="Conqueror - Gestor de Hábitos"
-                fill
-                className="object-contain bg-gray-900"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div>
-            <div className="p-6">
-              <h2 className="text-2xl font-bold text-white mb-2">Conqueror</h2>
-              <p className="text-gray-400 mb-4">
-                Aplicación web full-stack para el seguimiento y gestión de hábitos diarios, 
-                permitiendo a los usuarios establecer, monitorear y mantener sus rutinas de manera efectiva.
-              </p>
-              
-              <div className="mb-4">
-                <h3 className="text-lg font-semibold text-purple-400 mb-2">Características Principales</h3>
-                <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  <li>Dashboard personalizado con métricas de progreso</li>
-                  <li>Sistema de seguimiento de hábitos con recordatorios</li>
-                  <li>Estadísticas y visualizaciones de progreso</li>
-                  <li>Autenticación y perfiles de usuario</li>
-                  <li>Notificaciones y recordatorios personalizados</li>
-                </ul>
+          <div className="grid grid-cols-1 gap-8">
+            <a
+              href="https://app-habitos-ruddy.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-gray-800 rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer"
+            >
+              <div className="relative h-64 w-full">
+                <Image
+                  src="/app-dashboard.png"
+                  alt="Conqueror - Gestor de Hábitos"
+                  fill
+                  className="object-contain bg-gray-900"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
               </div>
+              <div className="p-6">
+                <h2 className="text-2xl font-bold text-white mb-2">
+                  Conqueror
+                </h2>
+                <p className="text-gray-400 mb-4">
+                  Aplicación web full-stack para el seguimiento y gestión de
+                  hábitos diarios, permitiendo a los usuarios establecer,
+                  monitorear y mantener sus rutinas de manera efectiva.
+                </p>
 
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-purple-400 mb-2">Stack Tecnológico</h3>
-                <div className="flex flex-wrap gap-3">
-                  <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
-                    <SiNextdotjs className="w-5 h-5 text-blue-400" />
-                    <span className="text-gray-300">Next.js</span>
-                  </div>
-                  <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
-                    <SiTypescript className="w-5 h-5 text-blue-400" />
-                    <span className="text-gray-300">TypeScript</span>
-                  </div>
-                  <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
-                    <SiDjango className="w-5 h-5 text-green-400" />
-                    <span className="text-gray-300">Django</span>
-                  </div>
-                  <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
-                    <SiPostgresql className="w-5 h-5 text-blue-400" />
-                    <span className="text-gray-300">PostgreSQL</span>
-                  </div>
-                  <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
-                    <SiTailwindcss className="w-5 h-5 text-cyan-400" />
-                    <span className="text-gray-300">Tailwind CSS</span>
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-purple-400 mb-2">
+                    Características Principales
+                  </h3>
+                  <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <li>Dashboard personalizado con métricas de progreso</li>
+                    <li>Sistema de seguimiento de hábitos con recordatorios</li>
+                    <li>Estadísticas y visualizaciones de progreso</li>
+                    <li>Autenticación y perfiles de usuario</li>
+                    <li>Notificaciones y recordatorios personalizados</li>
+                  </ul>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-purple-400 mb-2">
+                    Stack Tecnológico
+                  </h3> 
+                  <div className="flex flex-wrap gap-3">
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiNextdotjs className="w-5 h-5 text-blue-400" />
+                      <span className="text-gray-300">Next.js</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiTypescript className="w-5 h-5 text-blue-400" />
+                      <span className="text-gray-300">TypeScript</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiDjango className="w-5 h-5 text-green-400" />
+                      <span className="text-gray-300">Django</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiPostgresql className="w-5 h-5 text-blue-400" />
+                      <span className="text-gray-300">PostgreSQL</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiTailwindcss className="w-5 h-5 text-cyan-400" />
+                      <span className="text-gray-300">Tailwind CSS</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="flex justify-between items-center">
-                <GitHubButton />
-                <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                  Ver Demo
-                </span>
+                <div className="flex justify-between items-center">
+                  <GitHubButton />
+                  <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    Ver Demo
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8">
+            <a
+              href="https://finances-prevalentware-yrvl.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-gray-800 rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer"
+            >
+              <div className="relative h-64 w-full">
+                <Image
+                  src="/app-finances.png"
+                  alt="Finances - Gestor de Finanzas"
+                  fill
+                  className="object-contain bg-gray-900"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              </div>
+              <div className="p-6">
+                <h2 className="text-2xl font-bold text-white mb-2">
+                  Finances-App
+                </h2>
+                <p className="text-gray-400 mb-4">
+                Sistema de Gestión de Ingresos y Egresos - Fullstack. El sistema permite gestionar ingresos y egresos financieros, administrar usuarios, y generar reportes visuales y descargables.
+                </p>
+
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-purple-400 mb-2">
+                    Características Principales
+                  </h3>
+                  <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <li>Autenticación y Autorización</li>
+                    <li>Gestión de Ingresos y Egresos</li>
+                    <li> Gestión de Usuarios (solo ADMIN)</li>
+                    <li>Reportes Financieros (solo ADMIN)</li>
+                    <li>Seguridad</li>
+                  </ul>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-purple-400 mb-2">
+                    Stack Tecnológico
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiNextdotjs className="w-5 h-5 text-blue-400" />
+                      <span className="text-gray-300">Next.js</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiTypescript className="w-5 h-5 text-blue-400" />
+                      <span className="text-gray-300">TypeScript</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <RiSupabaseLine className="w-5 h-5 text-green-400" />
+                      <span className="text-gray-300">Supabase</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiPostgresql className="w-5 h-5 text-blue-400" />
+                      <span className="text-gray-300">PostgreSQL</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiPrisma className="w-5 h-5 text-black" />
+                      <span className="text-gray-300">Prisma</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiShadcnui className="w-5 h-5 text-black" />
+                      <span className="text-gray-300">Shadcn-UI</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                    <i className="bxl bx-better-auth" />
+                      <GrSecure className="w-5 h-5 text-black" />
+                      <span className="text-gray-300">Better-Auth</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiSwagger className="w-5 h-5 text-green-600" />
+                      <span className="text-gray-300">Swagger</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <ImStatsBars className="w-5 h-5 text-cyan-400" />
+                      <span className="text-gray-300">ReCharts</span>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-full">
+                      <SiTailwindcss className="w-5 h-5 text-cyan-400" />
+                      <span className="text-gray-300">Tailwind CSS</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <GitHubButton />
+                  <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    Ver Demo
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
 
         <div className="text-center mt-16">
