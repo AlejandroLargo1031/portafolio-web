@@ -16,6 +16,7 @@ import { RiSupabaseLine } from "react-icons/ri";
 import { GrSecure } from "react-icons/gr";
 import { ImStatsBars } from "react-icons/im";
 import Link from "next/link";
+import Navbar from "@/app/components/Navbar";
 
 export default function Projects() {
   const projects = [
@@ -67,6 +68,7 @@ export default function Projects() {
 
   return (
     <>
+      <Navbar />
       <section className="py-16 bg-gray-900" id="projects">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
