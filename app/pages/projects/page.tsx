@@ -146,10 +146,9 @@ export default function Projects() {
               </div>
             ))}
           </div>
+          
         </div>
-      </section>
-
-      <div className="text-center mb-10 mt-16">
+        <div className="text-center mt-16 bg-gray-900" >
         <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
           ¿Tienes un proyecto en mente?
         </h2>
@@ -163,6 +162,7 @@ export default function Projects() {
           Hablemos de tu proyecto
         </Link>
       </div>
+      </section>
     </>
   );
 }
