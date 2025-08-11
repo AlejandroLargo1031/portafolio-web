@@ -155,7 +155,7 @@ export default function Projects() {
           Estoy disponible para nuevos proyectos y colaboraciones.
         </p>
         <Link
-          href="/contact"
+          href="/pages/contact"
           className="inline-block px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:opacity-90 transition-opacity"
         >
           Hablemos de tu proyecto
