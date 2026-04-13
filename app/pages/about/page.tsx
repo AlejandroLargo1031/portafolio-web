@@ -143,6 +143,80 @@ export default function About() {
           <div className="space-y-8">
             <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
               <div className="flex items-start gap-6">
+                <div
+                  className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border"
+                  aria-hidden
+                >
+               <Image
+                src="/appsmartt.jpeg"
+                alt="Bitparner"
+                fill
+                className="object-contain"
+               />
+                </div>
+                <div className="flex-grow">
+                  <h3 className="text-xl font-semibold text-purple-400">
+                    ingeniero de software (Full Stack)
+                  </h3>
+                  <p className="text-gray-400 mt-2">Bitparner</p>
+                  <p className="text-gray-400">octubre 2025 — actualmente</p>
+                  <ul className="mt-4 list-inside list-disc space-y-2 text-gray-300">
+                    <li>
+                      Diseñé e implementé la arquitectura completa del sistema (backend, frontend e infraestructura), logrando una solución escalable que soporta +50% de crecimiento en usuarios sin degradación de rendimiento.
+                    </li>
+                    <li>
+                    Gestioné despliegues y operación en servidores (DigitalOcean) usando PM2 y Nginx, alcanzando una disponibilidad del sistema del 99.9% y reduciendo caídas en un 40%.
+                    </li>
+                    <li>
+                    Implementé almacenamiento y manejo de archivos con AWS S3, mejorando la eficiencia en la gestión de recursos en un 30% y reduciendo carga en el servidor principal.
+                    </li>
+                    <li>
+                    Desarrollé el frontend con React (v19), mejorando la experiencia de usuario y reduciendo los tiempos de carga en un 25% mediante optimización de componentes y manejo de estado.
+                    </li>
+                    <li>
+                    Lideré el ciclo completo de desarrollo (arquitectura, desarrollo, despliegue y mantenimiento), reduciendo tiempos de entrega en un 20% gracias a buenas prácticas y automatización.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+              <div className="flex items-start gap-6">
+                <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-white p-2">
+                  <Image
+                    src="/vtn.svg"
+                    alt="Vende tu nave Colombia"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex-grow">
+                  <h3 className="text-xl font-semibold text-purple-400">
+                    Desarrollador de software (Full Stack)
+                  </h3>
+                  <p className="text-gray-400 mt-2">Vende tu nave Colombia</p>
+                  <p className="text-gray-400">agosto 2025 — Enero 2026</p>
+                  <ul className="mt-4 list-inside list-disc space-y-2 text-gray-300">
+                    <li>
+                    Migré y reestructuré el backend de PHP a FastAPI, logrando una mejora de hasta 40% en tiempos de respuesta y mayor escalabilidad del sistema.
+                    </li>
+                    <li>
+                    Implementé un backoffice en Django, reduciendo en aproximadamente 30% los tiempos operativos del equipo administrativo mediante automatización de procesos internos.                     
+                    </li>
+                    <li>
+                    Realicé mantenimiento y optimización del frontend, mejorando el rendimiento de carga en un 25% y reduciendo errores en producción en un 20%.
+                    </li>
+                    <li>
+                    Diseñé e implementé nuevos módulos funcionales, incrementando la cobertura del sistema en un 35% y mejorando la experiencia de usuario en flujos clave.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+              <div className="flex items-start gap-6">
                 <div className="w-20 h-20 relative flex-shrink-0">
                   <Image
                     src="/isotipo.png"
@@ -153,10 +227,10 @@ export default function About() {
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-xl font-semibold text-purple-400">
-                    Desarrollador Frontend
+                    Desarrollador de software (Full Stack)
                   </h3>
                   <p className="text-gray-400 mt-2">DxAbstract Colombia</p>
-                  <p className="text-gray-400">Diciembre 2024 - Presente</p>
+                  <p className="text-gray-400">Diciembre 2024 — agosto 2025</p>
                   <ul className="text-gray-300 mt-4 space-y-2 list-disc list-inside">
                     <li>Desarrollo de IA experta en análisis de leyes Colombianas usando Azure Cognitive Services y GPT-4</li>
                     <li>Implementación de modelos NLP para consultas legales con 35% de precisión</li>
