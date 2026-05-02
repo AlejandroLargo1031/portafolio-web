@@ -69,13 +69,13 @@ export default function Projects() {
   return (
     <>
       <Navbar />
-      <section className="py-16 bg-gray-900" id="projects">
+      <section className="py-16 bg-portfolio-bg" id="projects">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep bg-clip-text text-transparent">
               Mis Proyectos
             </h1>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-portfolio-body text-lg max-w-2xl mx-auto">
               Explora mi portafolio de proyectos donde aplico mis habilidades y
               conocimientos en desarrollo web.
             </p>
@@ -84,28 +84,28 @@ export default function Projects() {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="block bg-gray-800 rounded-xl overflow-hidden hover:scale-105 transition-transform"
+                className="block bg-portfolio-surface rounded-xl overflow-hidden hover:scale-105 transition-transform"
               >
                 <div className="relative h-64 w-full">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-contain bg-gray-900"
+                    className="object-contain bg-portfolio-bg"
                   />
                 </div>
 
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-white mb-2">
+                  <h2 className="text-2xl font-bold text-portfolio-bright mb-2">
                     {project.title}
                   </h2>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <p className="text-portfolio-body mb-4">{project.description}</p>
 
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-purple-400 mb-2">
+                    <h3 className="text-lg font-semibold text-portfolio-accent mb-2">
                       Características Principales
                     </h3>
-                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <ul className="list-disc list-inside text-portfolio-bright/90 space-y-1">
                       {project.caracteristicas.map((caracteristica, i) => (
                         <li key={i}>{caracteristica}</li>
                       ))}
@@ -118,7 +118,7 @@ export default function Projects() {
                       return (
                         <span
                           key={i}
-                          className="flex items-center gap-1 bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-xs"
+                          className="flex items-center gap-1 bg-portfolio-raised text-portfolio-bright/85 px-3 py-1 rounded-full text-xs"
                         >
                           <Icon className="w-4 h-4" />
                           {tech.name}
@@ -130,14 +130,14 @@ export default function Projects() {
                   <div className="flex justify-between items-center">
                     <button
                       onClick={() => window.open(project.githubUrl, "_blank")}
-                      className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors"
+                      className="flex items-center space-x-2 text-portfolio-body hover:text-portfolio-accent transition-colors"
                     >
                       <FaGithub className="w-5 h-5" />
                       <span>Ver en GitHub</span>
                     </button>
                     <button
                       onClick={() => window.open(project.demoUrl, "_blank")}
-                      className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold"
+                      className="bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright px-4 py-2 rounded-full text-sm font-semibold"
                     >
                       Ver Demo
                     </button>
@@ -148,16 +148,16 @@ export default function Projects() {
           </div>
           
         </div>
-        <div className="text-center mt-16 bg-gray-900" >
-        <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        <div className="text-center mt-16 bg-portfolio-bg" >
+        <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep bg-clip-text text-transparent">
           ¿Tienes un proyecto en mente?
         </h2>
-        <p className="text-gray-400 mb-8">
+        <p className="text-portfolio-body mb-8">
           Estoy disponible para nuevos proyectos y colaboraciones.
         </p>
         <Link
           href="/pages/contact"
-          className="inline-block px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:opacity-90 transition-opacity"
+          className="inline-block px-8 py-3 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright rounded-full hover:opacity-90 transition-opacity"
         >
           Hablemos de tu proyecto
         </Link>

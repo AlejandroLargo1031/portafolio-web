@@ -40,7 +40,7 @@ export default function Carousel(): JSX.Element {
                     className="w-20 h-15 rounded-3xl"
                   />
                 </div>
-                <span className="text-sm font-semibold">{lang.name}</span>
+                <span className="text-sm font-semibold text-portfolio-bright">{lang.name}</span>
               </div>
             ))}
           </div>

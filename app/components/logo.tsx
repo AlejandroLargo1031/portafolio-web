@@ -1,38 +1,58 @@
 'use client'
 
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import anime from 'animejs';
 
+function runLogoAnimation() {
+  anime.remove('#hexagon path');
+  anime.remove('#hexagon #AL');
+
+  anime.set('#hexagon #AL', { opacity: 0 });
+  anime.set('#hexagon path', { strokeDashoffset: anime.setDashoffset });
+
+  anime
+    .timeline()
+    .add({
+      targets: '#hexagon path',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeInOutQuart',
+      duration: 2000,
+    })
+    .add({
+      targets: '#hexagon #AL',
+      opacity: [0, 1],
+      easing: 'easeInOutQuart',
+      duration: 1000,
+    });
+}
+
 export default function Logo() {
+  const replay = useCallback(() => {
+    runLogoAnimation();
+  }, []);
+
   useEffect(() => {
-    anime.timeline()
-      .add({
-        targets: '#hexagon path',
-        strokeDashoffset: [anime.setDashoffset, 0], 
-        easing: 'easeInOutQuart',
-        duration: 2000,
-      })
-      .add({
-        targets: '#hexagon #AL',
-        opacity: [0, 1],
-        easing: 'easeInOutQuart',
-        duration: 1000,
-      });
-  }, []); 
+    runLogoAnimation();
+  }, []);
+
   return (
-    <div className="w-12 h-12 flex items-center justify-center">
+    <div
+      className="flex h-12 w-12 cursor-pointer items-center justify-center"
+      onMouseEnter={replay}
+      role="presentation"
+    >
       <svg
         id="hexagon"
         viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full"
+        className="h-full w-full"
       >
         <g>
           <g
             id="AL"
             transform="translate(36, 33)"
-            fill="#06b6d4"
+            fill="#599692"
             fontFamily="system-ui, Calibre-Medium, Calibre, sans-serif"
             fontSize="30"
             fontWeight="400"
@@ -44,7 +64,7 @@ export default function Logo() {
             </text>
           </g>
           <path
-            stroke="#06b6d4"
+            stroke="#599692"
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"

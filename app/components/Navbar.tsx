@@ -16,7 +16,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-900/95 backdrop-blur-sm text-white py-4 sticky top-0 z-50 border-b border-gray-800">
+    <nav className="bg-portfolio-bg/95 backdrop-blur-sm text-portfolio-bright py-4 sticky top-0 z-50 border-b border-portfolio-accent/20">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Logo />
@@ -24,7 +24,7 @@ export default function Navbar() {
           {/* Burger Menu Button - Only visible on mobile */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-portfolio-surface transition-colors"
             aria-label="Toggle menu"
           >
             <svg
@@ -47,14 +47,14 @@ export default function Navbar() {
           {/* Navigation Links - Hidden on mobile when menu is closed */}
           <ul className={`${
             isMenuOpen ? 'flex' : 'hidden'
-          } md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 md:top-auto bg-gray-900 md:bg-transparent p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-1`}>
+          } md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 md:top-auto bg-portfolio-bg md:bg-transparent p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-1`}>
             <li>
               <Link
                 href="/"
                 className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
                   isActive('/')
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
+                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -66,8 +66,8 @@ export default function Navbar() {
                 href="/pages/about"
                 className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
                   isActive('/pages/about')
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
+                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -79,8 +79,8 @@ export default function Navbar() {
                 href="/pages/projects"
                 className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
                   isActive('/pages/projects')
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
+                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -92,8 +92,8 @@ export default function Navbar() {
                 href="/pages/contact"
                 className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
                   isActive('/pages/contact')
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
+                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
