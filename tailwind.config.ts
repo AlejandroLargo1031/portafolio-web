@@ -11,6 +11,15 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        portfolio: {
+          bg: "#11172a",
+          body: "#a3aebf",
+          accent: "#599692",
+          bright: "#dfe5ec",
+          surface: "#1a2238",
+          raised: "#232f4a",
+          "accent-deep": "#457a77",
+        },
       },
       animation: {
         carousel: "carousel 20s linear infinite",
