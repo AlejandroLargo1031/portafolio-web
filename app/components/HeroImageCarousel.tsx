@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import Button from "./Button";
 
 /** Ruta por defecto; puedes usar la misma en todos los slides o una por `src`. */
-export const HERO_CAROUSEL_DEFAULT_IMAGE = "/alejandro-1.jpeg";
+export const HERO_CAROUSEL_DEFAULT_IMAGE = "/alejandro-1.png";
 
 type Slide = {
   id: number;
@@ -25,14 +25,14 @@ const slides: Slide[] = [
   },
   {
     id: 1,
-    src: "/api.jpg",
+    src: "/api.png",
     title: "Proyectos que resuelven problemas reales",
     subtitle: "De la idea al despliegue: APIs, interfaces y buenas prácticas",
     alt: "Proyectos destacados",
   },
   {
     id: 2,
-    src: "/js.webp",
+    src: "/js.png",
     title: "Stack centrado en JavaScript",
     subtitle: "React, Node y herramientas modernas para productos mantenibles",
     alt: "Tecnologías y stack",
@@ -46,7 +46,7 @@ const slides: Slide[] = [
   },
   {
     id: 4,
-    src: "/sociedad.avif",
+    src: "/sociedad.png",
     title: "Construyamos tu siguiente versión",
     subtitle: "¿Tienes un reto técnico? Hablemos y lo convertimos en plan",
     alt: "Contacto y próximos pasos",
@@ -73,9 +73,9 @@ export default function HeroImageCarousel() {
    * para que no se encogen por columnas 1fr estrechas en pantallas medianas.
    */
   const cardBaseClass =
-    "relative isolate aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-portfolio-bright/15 lg:aspect-[5/7]";
+    "relative isolate aspect-[4/5] overflow-hidden lg:aspect-[5/7]";
 
-  const sideCardClass = `${cardBaseClass} group w-[clamp(12rem,26vw,34.2rem)] shrink-0 shadow-xl shadow-black/40 transition-all duration-300 ease-out hover:z-40 hover:scale-[1.05] hover:shadow-2xl hover:ring-portfolio-accent/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-accent focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-bg origin-center`;
+  const sideCardClass = `${cardBaseClass} group w-[clamp(12rem,26vw,34.2rem)] shrink-0 shadow-xl transition-all duration-300 ease-out hover:z-40 hover:scale-[1.05] hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-accent focus-visible:ring-offset-2 focus-visible:ring-offset-portfolio-bg origin-center`;
 
   const sideImageClass =
     "object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110";
