@@ -16,19 +16,18 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-portfolio-bg/95 backdrop-blur-sm text-portfolio-bright py-4 sticky top-0 z-50 border-b border-portfolio-accent/20">
+    <nav className="sticky top-0 z-50 border-b border-portfolio-bright/5 bg-portfolio-bg/90 py-4 text-portfolio-bright backdrop-blur-md">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <Logo />
-          
-          {/* Burger Menu Button - Only visible on mobile */}
+
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg hover:bg-portfolio-surface transition-colors"
+            className="rounded-lg p-2 transition-colors hover:bg-portfolio-surface md:hidden"
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6"
+              className="h-6 w-6"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -44,62 +43,31 @@ export default function Navbar() {
             </svg>
           </button>
 
-          {/* Navigation Links - Hidden on mobile when menu is closed */}
-          <ul className={`${
-            isMenuOpen ? 'flex' : 'hidden'
-          } md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 md:top-auto bg-portfolio-bg md:bg-transparent p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-1`}>
-            <li>
-              <Link
-                href="/"
-                className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
-                  isActive('/')
-                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
-                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Inicio
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/pages/about"
-                className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
-                  isActive('/pages/about')
-                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
-                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Acerca de mí
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/pages/projects"
-                className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
-                  isActive('/pages/projects')
-                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
-                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Proyectos
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/pages/contact"
-                className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
-                  isActive('/pages/contact')
-                    ? 'bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright'
-                    : 'text-portfolio-body hover:text-portfolio-bright hover:bg-portfolio-surface'
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contacto
-              </Link>
-            </li>
+          <ul
+            className={`${
+              isMenuOpen ? "flex" : "hidden"
+            } absolute left-0 right-0 top-full flex-col space-y-1 bg-portfolio-bg p-4 md:relative md:top-auto md:flex md:flex-row md:space-x-1 md:space-y-0 md:bg-transparent md:p-0`}
+          >
+            {[
+              { href: "/", label: "Inicio" },
+              { href: "/pages/about", label: "Acerca de mí" },
+              { href: "/pages/projects", label: "Proyectos" },
+              { href: "/pages/contact", label: "Contacto" },
+            ].map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`block rounded-md px-4 py-2 text-sm transition-colors ${
+                    isActive(item.href)
+                      ? "text-portfolio-accent"
+                      : "text-portfolio-body hover:text-portfolio-bright"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

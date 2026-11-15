@@ -7,14 +7,8 @@ import {
   SiPostgresql,
   SiTailwindcss,
   SiTypescript,
-  SiPrisma,
-  SiShadcnui,
-  SiSwagger,
 } from "react-icons/si";
 import { FaGithub } from "react-icons/fa";
-import { RiSupabaseLine } from "react-icons/ri";
-import { GrSecure } from "react-icons/gr";
-import { ImStatsBars } from "react-icons/im";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 
@@ -38,30 +32,6 @@ export default function Projects() {
         { name: "Django", icon: SiDjango },
         { name: "PostgreSQL", icon: SiPostgresql },
         { name: "Tailwind CSS", icon: SiTailwindcss },
-      ],
-    },
-    {
-      title: "Finances-App",
-      description:
-        "Sistema de gestión de ingresos y egresos con base de datos en la nube y panel de estadísticas en tiempo real.",
-      caracteristicas: [ "Autenticación y Autorización",
-        "Gestión de Ingresos y Egresos",
-        "Gestión de Usuarios (solo ADMIN)",
-        "Reportes Financieros (solo ADMIN)",
-        "Seguridad"],
-      image: "/app-finances.png",
-      demoUrl: "https://finances-prevalentware-yrvl.vercel.app/",
-      githubUrl: "https://github.com/AlejandroLargo1031/finances-prevalentware",
-      stack: [
-        { name: "Next.js", icon: SiNextdotjs },
-        { name: "TypeScript", icon: SiTypescript },
-        { name: "Supabase", icon: RiSupabaseLine },
-        { name: "Prisma", icon: SiPrisma },
-        { name: "Swagger", icon: SiSwagger },
-        { name: "ShadCN", icon: SiShadcnui },
-        { name: "Recharts", icon: ImStatsBars },
-        { name: "Tailwind", icon: SiTailwindcss },
-        { name: "Better-Auth", icon: GrSecure },
       ],
     },
   ];

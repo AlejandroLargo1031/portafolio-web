@@ -8,12 +8,129 @@
   --portfolio-accent: #599692;
   --portfolio-bright: #dfe5ec;
   --portfolio-surface: #1a2238;
+  --portfolio-raised: #232f4a;
+  --portfolio-accent-deep: #457a77;
   --background: var(--portfolio-bg);
   --foreground: var(--portfolio-body);
+  --spotlight-x: 50%;
+  --spotlight-y: 30%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--portfolio-accent) 35%, transparent);
+  color: var(--portfolio-bright);
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.page-atmosphere {
+  background:
+    radial-gradient(ellipse 70% 45% at 85% 8%, rgba(89, 150, 146, 0.16), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 35%, rgba(69, 122, 119, 0.12), transparent 50%),
+    linear-gradient(165deg, #11172a 0%, #152038 42%, #11172a 100%);
+}
+
+.cursor-spotlight {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: radial-gradient(
+    650px circle at var(--spotlight-x) var(--spotlight-y),
+    rgba(89, 150, 146, 0.16),
+    transparent 40%
+  );
+  transition: background 0.05s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-spotlight {
+    display: none;
+  }
+}
+
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background: rgba(89, 150, 146, 0.15);
+  color: var(--portfolio-accent);
+  padding: 0.2rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.timeline-rail {
+  position: absolute;
+  left: 1.75rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(89, 150, 146, 0.45) 12%,
+    rgba(89, 150, 146, 0.45) 88%,
+    transparent
+  );
+}
+
+@media (min-width: 768px) {
+  .timeline-rail {
+    left: 2.25rem;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer-line {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  40% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  60% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+.hero-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.accent-shimmer {
+  display: block;
+  height: 2px;
+  width: 5rem;
+  background: var(--portfolio-accent);
+  animation: shimmer-line 3.2s ease-in-out infinite;
 }
