@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   FaGithub,
@@ -11,61 +11,14 @@ import {
   FaArrowUpRightFromSquare,
 } from "react-icons/fa6";
 import Logo from "./logo";
+import LanguageToggle from "./LanguageToggle";
+import { useI18n } from "../i18n/I18nProvider";
 
-const NAV_ITEMS = [
-  { id: "sobre-mi", label: "Sobre mí" },
-  { id: "experiencia", label: "Experiencia" },
-  { id: "proyectos", label: "Proyectos" },
+const NAV_IDS = [
+  { id: "sobre-mi", key: "nav.about" },
+  { id: "experiencia", key: "nav.experience" },
+  { id: "proyectos", key: "nav.projects" },
 ] as const;
-
-const experiences = [
-  {
-    id: "bitparner",
-    period: "Oct 2025 — Presente",
-    title: "Ingeniero de Software (Full Stack)",
-    company: "Bitparner",
-    logo: "/appsmartt.jpeg",
-    logoBg: "bg-white",
-    description:
-      "Diseñé e implementé la arquitectura completa del sistema (backend, frontend e infraestructura). Gestioné despliegues en DigitalOcean con PM2 y Nginx, integré AWS S3 y lideré el ciclo con React 19.",
-    tech: ["React", "Node.js", "AWS S3", "DigitalOcean", "Nginx"],
-  },
-  {
-    id: "vtn",
-    period: "Ago 2025 — Ene 2026",
-    title: "Desarrollador de Software (Full Stack)",
-    company: "Vende tu nave Colombia",
-    logo: "/vtn.svg",
-    logoBg: "bg-white",
-    description:
-      "Migré el backend de PHP a FastAPI, implementé un backoffice en Django y optimicé el frontend. Nuevos módulos que mejoraron tiempos de respuesta y operación interna.",
-    tech: ["FastAPI", "Django", "Python", "JavaScript"],
-  },
-  {
-    id: "dxabstract",
-    period: "Dic 2024 — Ago 2025",
-    title: "Desarrollador de Software (Full Stack)",
-    company: "DxAbstract Colombia",
-    logo: "/isotipo.png",
-    logoBg: "bg-portfolio-raised",
-    description:
-      "Soluciones con IA para análisis legal, apps con Next.js y landing en Astro con excelente rendimiento. Entrega orientada a producto y requisitos de negocio.",
-    tech: ["Next.js", "Astro", "Azure", "GPT-4", "TypeScript"],
-  },
-];
-
-const projects = [
-  {
-    id: "conqueror",
-    title: "Conqueror",
-    description:
-      "App full-stack para gestión de hábitos: autenticación, dashboard con métricas, seguimiento con recordatorios y visualización de progreso.",
-    image: "/app-dashboard.png",
-    demoUrl: "https://app-habitos-ruddy.vercel.app/",
-    githubUrl: "https://github.com/AlejandroLargo1031/App_Habitos",
-    tech: ["Next.js", "TypeScript", "Django", "PostgreSQL", "Tailwind"],
-  },
-];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -97,9 +50,18 @@ function Reveal({
 }
 
 export default function PortfolioHome() {
+  const { t, messages } = useI18n();
   const [activeSection, setActiveSection] = useState("sobre-mi");
   const [menuOpen, setMenuOpen] = useState(false);
   const reduce = useReducedMotion();
+
+  const experiences = messages.experiences;
+  const projects = messages.projectList;
+
+  const navItems = useMemo(
+    () => NAV_IDS.map((item) => ({ ...item, label: t(item.key) })),
+    [t]
+  );
 
   const onMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -112,7 +74,7 @@ export default function PortfolioHome() {
   );
 
   useEffect(() => {
-    const sections = NAV_ITEMS.map((item) =>
+    const sections = NAV_IDS.map((item) =>
       document.getElementById(item.id)
     ).filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
@@ -136,68 +98,71 @@ export default function PortfolioHome() {
       className="page-atmosphere relative min-h-screen"
       onMouseMove={onMouseMove}
     >
-      {!reduce && (
-        <div className="cursor-spotlight" aria-hidden />
-      )}
+      {!reduce && <div className="cursor-spotlight" aria-hidden />}
 
       <a
         href="#contenido"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-portfolio-accent focus:px-3 focus:py-2 focus:text-portfolio-bg"
       >
-        Saltar al contenido
+        {t("a11y.skip")}
       </a>
 
-      {/* Header superior — distinto al sidebar sticky de Brittany */}
       <header className="sticky top-0 z-50 border-b border-portfolio-bright/5 bg-portfolio-bg/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
-          <Link href="/" className="flex items-center gap-3" aria-label="Inicio">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 sm:px-8">
+          <Link href="/" className="flex items-center gap-3" aria-label={t("a11y.home")}>
             <Logo />
             <span className="font-display text-sm font-semibold tracking-wide text-portfolio-bright">
               Alejandro Largo
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex" aria-label="Secciones">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                  activeSection === item.id
-                    ? "text-portfolio-accent"
-                    : "text-portfolio-body hover:text-portfolio-bright"
-                }`}
+          <div className="hidden items-center gap-2 md:flex">
+            <nav className="flex items-center gap-1" aria-label={t("a11y.sections")}>
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                    activeSection === item.id
+                      ? "text-portfolio-accent"
+                      : "text-portfolio-body hover:text-portfolio-bright"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Link
+                href="/pages/contact"
+                className="ml-2 rounded-md bg-portfolio-accent px-3.5 py-2 text-sm font-semibold text-portfolio-bg transition-opacity hover:opacity-90"
               >
-                {item.label}
-              </a>
-            ))}
-            <Link
-              href="/pages/contact"
-              className="ml-2 rounded-md bg-portfolio-accent px-3.5 py-2 text-sm font-semibold text-portfolio-bg transition-opacity hover:opacity-90"
-            >
-              Contacto
-            </Link>
-          </nav>
+                {t("nav.contact")}
+              </Link>
+            </nav>
+            <LanguageToggle />
+          </div>
 
-          <button
-            type="button"
-            className="rounded-md p-2 text-portfolio-bright md:hidden"
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {menuOpen ? (
-                <path strokeLinecap="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageToggle />
+            <button
+              type="button"
+              className="rounded-md p-2 text-portfolio-bright"
+              aria-label={menuOpen ? t("a11y.closeMenu") : t("a11y.openMenu")}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {menuOpen ? (
+                  <path strokeLinecap="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {menuOpen && (
           <div className="border-t border-portfolio-bright/5 px-5 py-3 md:hidden">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -212,14 +177,13 @@ export default function PortfolioHome() {
               className="mt-2 block py-2 font-semibold text-portfolio-accent"
               onClick={() => setMenuOpen(false)}
             >
-              Contacto
+              {t("nav.contact")}
             </Link>
           </div>
         )}
       </header>
 
       <main id="contenido">
-        {/* Hero: marca grande + foto a pantalla */}
         <section className="relative overflow-hidden">
           <div className="mx-auto grid max-w-6xl items-end gap-10 px-5 pb-16 pt-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:pb-24 lg:pt-20">
             <motion.div
@@ -228,7 +192,7 @@ export default function PortfolioHome() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-portfolio-accent">
-                Fullstack · JavaScript
+                {t("hero.eyebrow")}
               </p>
               <h1 className="font-display text-5xl font-bold leading-[0.95] tracking-tight text-portfolio-bright sm:text-6xl lg:text-7xl">
                 Alejandro
@@ -237,24 +201,31 @@ export default function PortfolioHome() {
               </h1>
               <span className="accent-shimmer mt-6" aria-hidden />
               <p className="mt-6 max-w-md text-lg leading-relaxed text-portfolio-body">
-                Construyo productos web sólidos: APIs, interfaces y despliegues
-                que se pueden mantener y escalar.
+                {t("hero.tagline")}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href="#proyectos"
                   className="rounded-md bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep px-5 py-2.5 text-sm font-semibold text-portfolio-bright transition-opacity hover:opacity-90"
                 >
-                  Ver proyectos
+                  {t("hero.ctaProjects")}
                 </a>
                 <a
                   href="#experiencia"
                   className="rounded-md px-5 py-2.5 text-sm font-semibold text-portfolio-bright underline-offset-4 transition-colors hover:text-portfolio-accent hover:underline"
                 >
-                  Trayectoria
+                  {t("hero.ctaExperience")}
+                </a>
+                <a
+                  href="/CV-Alejandro-Largo.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-md border border-portfolio-accent/50 px-5 py-2.5 text-sm font-semibold text-portfolio-accent transition-colors hover:border-portfolio-accent hover:bg-portfolio-accent/10"
+                >
+                  {t("hero.ctaResume")}
                 </a>
               </div>
-              <ul className="mt-10 flex items-center gap-5" aria-label="Redes">
+              <ul className="mt-10 flex items-center gap-5" aria-label={t("a11y.social")}>
                 <li>
                   <a
                     href="https://github.com/AlejandroLargo1031"
@@ -300,7 +271,7 @@ export default function PortfolioHome() {
               <div className="hero-float relative aspect-[4/5] overflow-hidden bg-portfolio-surface">
                 <Image
                   src="/alejandro-1.png"
-                  alt="Alejandro Largo"
+                  alt={t("hero.photoAlt")}
                   fill
                   priority
                   className="object-cover object-top"
@@ -323,11 +294,13 @@ export default function PortfolioHome() {
           </div>
         </section>
 
-        {/* Franja de logos de empresas */}
-        <section aria-label="Empresas" className="border-y border-portfolio-bright/5 bg-portfolio-surface/40">
+        <section
+          aria-label={t("a11y.companies")}
+          className="border-y border-portfolio-bright/5 bg-portfolio-surface/40"
+        >
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-8 px-5 py-8 sm:px-8">
             <p className="w-full text-xs font-semibold uppercase tracking-[0.18em] text-portfolio-body/70 sm:w-auto">
-              Donde he aportado
+              {t("companies.label")}
             </p>
             {experiences.map((job, i) => (
               <motion.div
@@ -340,15 +313,21 @@ export default function PortfolioHome() {
                 whileHover={reduce ? undefined : { y: -4 }}
               >
                 <div
-                  className={`relative h-11 w-11 overflow-hidden ${job.logoBg}`}
+                  className={`relative flex h-11 w-11 items-center justify-center overflow-hidden ${job.logoBg}`}
                 >
-                  <Image
-                    src={job.logo}
-                    alt=""
-                    fill
-                    className="object-contain p-1.5"
-                    sizes="44px"
-                  />
+                  {job.logo ? (
+                    <Image
+                      src={job.logo}
+                      alt=""
+                      fill
+                      className="object-contain p-1.5"
+                      sizes="44px"
+                    />
+                  ) : (
+                    <span className="font-display text-sm font-bold text-portfolio-accent">
+                      {job.logoInitial}
+                    </span>
+                  )}
                 </div>
                 <span className="text-sm font-medium text-portfolio-bright/90">
                   {job.company}
@@ -358,7 +337,6 @@ export default function PortfolioHome() {
           </div>
         </section>
 
-        {/* Sobre mí — layout asimétrico */}
         <section
           id="sobre-mi"
           className="scroll-mt-24 mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28"
@@ -371,47 +349,21 @@ export default function PortfolioHome() {
                   id="sobre-mi-title"
                   className="font-display text-3xl font-bold text-portfolio-bright sm:text-4xl"
                 >
-                  Sobre mí
+                  {t("about.title")}
                 </h2>
                 <p className="mt-3 text-sm text-portfolio-accent">
-                  Código limpio · producto real
+                  {t("about.subtitle")}
                 </p>
               </div>
               <div className="space-y-5 text-base leading-relaxed text-portfolio-body lg:border-l lg:border-portfolio-accent/30 lg:pl-10">
-                <p>
-                  Me gusta construir cosas que resuelvan problemas reales. Soy
-                  desarrollador fullstack con foco en{" "}
-                  <span className="font-medium text-portfolio-bright">
-                    JavaScript
-                  </span>
-                  , y disfruto el punto donde el diseño limpio se encuentra con
-                  código mantenible.
-                </p>
-                <p>
-                  Hoy trabajo en{" "}
-                  <span className="font-medium text-portfolio-bright">
-                    Bitparner
-                  </span>{" "}
-                  liderando arquitectura, frontend con React y operación en
-                  servidores. Antes aporté en{" "}
-                  <span className="font-medium text-portfolio-bright">
-                    Vende tu nave
-                  </span>{" "}
-                  y{" "}
-                  <span className="font-medium text-portfolio-bright">
-                    DxAbstract
-                  </span>
-                  .
-                </p>
-                <p>
-                  Sigo aprendiendo, colaborando en equipo y buscando retos donde
-                  una idea se convierta en un plan claro y un producto estable.
-                </p>
+                <p>{t("about.p1")}</p>
+                <p>{t("about.p2")}</p>
+                <p>{t("about.p3")}</p>
                 <Link
                   href="/pages/about"
                   className="inline-flex items-center gap-2 pt-2 text-sm font-semibold text-portfolio-accent transition-colors hover:text-portfolio-bright"
                 >
-                  Más detalles y skills
+                  {t("about.more")}
                   <span aria-hidden>→</span>
                 </Link>
               </div>
@@ -419,7 +371,6 @@ export default function PortfolioHome() {
           </Reveal>
         </section>
 
-        {/* Experiencia — timeline vertical con logos */}
         <section
           id="experiencia"
           className="scroll-mt-24 bg-portfolio-surface/30 py-20 lg:py-28"
@@ -431,11 +382,10 @@ export default function PortfolioHome() {
                 id="experiencia-title"
                 className="font-display text-3xl font-bold text-portfolio-bright sm:text-4xl"
               >
-                Experiencia
+                {t("experience.title")}
               </h2>
               <p className="mt-3 max-w-xl text-portfolio-body">
-                Un recorrido reciente construyendo y operando productos de punta
-                a punta.
+                {t("experience.subtitle")}
               </p>
             </Reveal>
 
@@ -446,17 +396,23 @@ export default function PortfolioHome() {
                   <li className="relative grid gap-5 pb-14 pl-16 md:grid-cols-[auto_1fr] md:gap-8 md:pl-20">
                     <div className="absolute left-0 top-0 z-10 md:left-1">
                       <motion.div
-                        className={`relative h-14 w-14 overflow-hidden ring-4 ring-portfolio-bg ${job.logoBg}`}
+                        className={`relative flex h-14 w-14 items-center justify-center overflow-hidden ring-4 ring-portfolio-bg ${job.logoBg}`}
                         whileHover={reduce ? undefined : { scale: 1.06 }}
                         transition={{ type: "spring", stiffness: 360, damping: 18 }}
                       >
-                        <Image
-                          src={job.logo}
-                          alt={`Logo ${job.company}`}
-                          fill
-                          className="object-contain p-1.5"
-                          sizes="56px"
-                        />
+                        {job.logo ? (
+                          <Image
+                            src={job.logo}
+                            alt={`Logo ${job.company}`}
+                            fill
+                            className="object-contain p-1.5"
+                            sizes="56px"
+                          />
+                        ) : (
+                          <span className="font-display text-lg font-bold text-portfolio-accent">
+                            {job.logoInitial}
+                          </span>
+                        )}
                       </motion.div>
                     </div>
 
@@ -476,11 +432,11 @@ export default function PortfolioHome() {
                       </p>
                       <ul
                         className="mt-4 flex flex-wrap gap-2"
-                        aria-label="Tecnologías"
+                        aria-label={t("a11y.tech")}
                       >
-                        {job.tech.map((t) => (
-                          <li key={t}>
-                            <span className="tech-chip">{t}</span>
+                        {job.tech.map((tech) => (
+                          <li key={tech}>
+                            <span className="tech-chip">{tech}</span>
                           </li>
                         ))}
                       </ul>
@@ -492,7 +448,6 @@ export default function PortfolioHome() {
           </div>
         </section>
 
-        {/* Proyectos — bloques grandes alternados */}
         <section
           id="proyectos"
           className="scroll-mt-24 mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28"
@@ -505,17 +460,17 @@ export default function PortfolioHome() {
                   id="proyectos-title"
                   className="font-display text-3xl font-bold text-portfolio-bright sm:text-4xl"
                 >
-                  Proyectos
+                  {t("projects.title")}
                 </h2>
                 <p className="mt-3 max-w-lg text-portfolio-body">
-                  Productos que he construido de extremo a extremo.
+                  {t("projects.subtitle")}
                 </p>
               </div>
               <Link
                 href="/pages/projects"
                 className="text-sm font-semibold text-portfolio-accent hover:text-portfolio-bright"
               >
-                Ver todos →
+                {t("projects.viewAll")}
               </Link>
             </div>
           </Reveal>
@@ -523,6 +478,9 @@ export default function PortfolioHome() {
           <div className="space-y-20">
             {projects.map((project, i) => {
               const reverse = i % 2 === 1;
+              const screenshotAlt = t("projects.screenshotAlt", {
+                title: project.title,
+              });
               return (
                 <Reveal key={project.id} delay={0.05}>
                   <article
@@ -530,56 +488,81 @@ export default function PortfolioHome() {
                       reverse ? "lg:[&>*:first-child]:order-2" : ""
                     }`}
                   >
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative block aspect-[16/10] overflow-hidden bg-portfolio-surface"
-                    >
-                      <Image
-                        src={project.image}
-                        alt={`Captura de ${project.title}`}
-                        fill
-                        className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-portfolio-bg/50 via-transparent to-portfolio-accent/10 opacity-80 transition-opacity group-hover:opacity-60"
-                        aria-hidden
-                      />
-                    </a>
+                    {project.demoUrl ? (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative block aspect-[16/10] overflow-hidden bg-portfolio-surface"
+                      >
+                        <Image
+                          src={project.image}
+                          alt={screenshotAlt}
+                          fill
+                          className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                        <div
+                          className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-portfolio-bg/50 via-transparent to-portfolio-accent/10 opacity-80 transition-opacity group-hover:opacity-60"
+                          aria-hidden
+                        />
+                      </a>
+                    ) : (
+                      <div className="group relative aspect-[16/10] overflow-hidden bg-portfolio-surface">
+                        <Image
+                          src={project.image}
+                          alt={screenshotAlt}
+                          fill
+                          className="object-cover object-top"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                        <div
+                          className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-portfolio-bg/50 via-transparent to-portfolio-accent/10 opacity-80"
+                          aria-hidden
+                        />
+                      </div>
+                    )}
 
                     <div>
                       <h3 className="font-display text-2xl font-semibold text-portfolio-bright">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 transition-colors hover:text-portfolio-accent"
-                        >
-                          {project.title}
-                          <FaArrowUpRightFromSquare className="h-3.5 w-3.5" aria-hidden />
-                        </a>
+                        {project.demoUrl ? (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 transition-colors hover:text-portfolio-accent"
+                          >
+                            {project.title}
+                            <FaArrowUpRightFromSquare
+                              className="h-3.5 w-3.5"
+                              aria-hidden
+                            />
+                          </a>
+                        ) : (
+                          <span>{project.title}</span>
+                        )}
                       </h3>
                       <p className="mt-3 text-portfolio-body leading-relaxed">
                         {project.description}
                       </p>
-                      <ul className="mt-5 flex flex-wrap gap-2" aria-label="Stack">
-                        {project.tech.map((t) => (
-                          <li key={t}>
-                            <span className="tech-chip">{t}</span>
+                      <ul className="mt-5 flex flex-wrap gap-2" aria-label={t("a11y.stack")}>
+                        {project.tech.map((tech) => (
+                          <li key={tech}>
+                            <span className="tech-chip">{tech}</span>
                           </li>
                         ))}
                       </ul>
                       <div className="mt-6 flex flex-wrap gap-4 text-sm">
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold text-portfolio-accent hover:text-portfolio-bright"
-                        >
-                          Ver demo
-                        </a>
+                        {project.demoUrl ? (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-portfolio-accent hover:text-portfolio-bright"
+                          >
+                            {t("projects.demo")}
+                          </a>
+                        ) : null}
                         <a
                           href={project.githubUrl}
                           target="_blank"
@@ -587,7 +570,7 @@ export default function PortfolioHome() {
                           className="inline-flex items-center gap-1.5 text-portfolio-body hover:text-portfolio-accent"
                         >
                           <FaGithub className="h-4 w-4" />
-                          Código
+                          {t("projects.code")}
                         </a>
                       </div>
                     </div>
@@ -598,31 +581,27 @@ export default function PortfolioHome() {
           </div>
         </section>
 
-        {/* CTA final */}
         <section className="border-t border-portfolio-bright/5 bg-gradient-to-br from-portfolio-surface to-portfolio-bg">
           <Reveal>
             <div className="mx-auto max-w-6xl px-5 py-16 text-center sm:px-8 lg:py-20">
               <h2 className="font-display text-3xl font-bold text-portfolio-bright">
-                ¿Construimos algo juntos?
+                {t("cta.title")}
               </h2>
               <p className="mx-auto mt-4 max-w-lg text-portfolio-body">
-                Estoy abierto a proyectos freelance y roles fullstack. Cuéntame
-                tu idea y lo convertimos en un plan.
+                {t("cta.body")}
               </p>
               <Link
                 href="/pages/contact"
                 className="mt-8 inline-block rounded-md bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep px-6 py-3 text-sm font-semibold text-portfolio-bright transition-opacity hover:opacity-90"
               >
-                Escribirme
+                {t("cta.button")}
               </Link>
             </div>
           </Reveal>
         </section>
 
         <footer className="mx-auto max-w-6xl px-5 py-10 text-center text-sm text-portfolio-body/60 sm:px-8">
-          <p>
-            Diseñado y desarrollado por Alejandro Largo · Next.js + Tailwind
-          </p>
+          <p>{t("footer.text")}</p>
         </footer>
       </main>
     </div>

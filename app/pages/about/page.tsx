@@ -32,8 +32,9 @@ type ExperienceItem = {
   title: string;
   company: string;
   period: string;
-  imageSrc: string;
+  imageSrc?: string;
   imageAlt: string;
+  logoInitial?: string;
   logoWrapClassName: string;
   imageClassName: string;
   bullets: string[];
@@ -41,55 +42,56 @@ type ExperienceItem = {
 
 const experiences: ExperienceItem[] = [
   {
-    id: "bitparner",
-    title: "ingeniero de software (Full Stack)",
-    company: "Bitparner",
+    id: "appsmart",
+    title: "Fullstack Engineer (Freelance)",
+    company: "Appsmart · Bitparner",
     period: "octubre 2025 — actualmente",
     imageSrc: "/appsmartt.jpeg",
-    imageAlt: "Bitparner",
+    imageAlt: "Appsmart",
     logoWrapClassName:
       "relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-portfolio-body/25",
     imageClassName: "object-contain",
     bullets: [
-      "Diseñé e implementé la arquitectura completa del sistema (backend, frontend e infraestructura), logrando una solución escalable que soporta +50% de crecimiento en usuarios sin degradación de rendimiento.",
-      "Gestioné despliegues y operación en servidores (DigitalOcean) usando PM2 y Nginx, alcanzando una disponibilidad del sistema del 99.9% y reduciendo caídas en un 40%.",
-      "Implementé almacenamiento y manejo de archivos con AWS S3, mejorando la eficiencia en la gestión de recursos en un 30% y reduciendo carga en el servidor principal.",
-      "Desarrollé el frontend con React (v19), mejorando la experiencia de usuario y reduciendo los tiempos de carga en un 25% mediante optimización de componentes y manejo de estado.",
-      "Lideré el ciclo completo de desarrollo (arquitectura, desarrollo, despliegue y mantenimiento), reduciendo tiempos de entrega en un 20% gracias a buenas prácticas y automatización.",
+      "Lideré el desarrollo end-to-end de Bitparner como único ingeniero: arquitectura, backend, frontend, seguridad, despliegue y soporte en producción.",
+      "Diseñé arquitectura modular orientada a dominios financieros (operaciones, usuarios, auditoría, reportes y control contable).",
+      "Construí APIs REST con Node.js, Express y PostgreSQL para flujos cripto-fiat, trazabilidad transaccional y gestión administrativa.",
+      "Implementé JWT, autorización por roles, cifrado, auditoría de eventos y bases técnicas para futuros procesos KYC/AML.",
+      "Configuré infraestructura productiva con DigitalOcean, Nginx, PM2 y administración de servidores Linux Ubuntu.",
     ],
   },
   {
     id: "vtn",
-    title: "Desarrollador de software (Full Stack)",
-    company: "Vende tu nave Colombia",
-    period: "agosto 2025 — Enero 2026",
+    title: "Fullstack Engineer (Freelance)",
+    company: "Vende tu nave",
+    period: "agosto 2025 — enero 2026",
     imageSrc: "/vtn.svg",
-    imageAlt: "Vende tu nave Colombia",
+    imageAlt: "Vende tu nave",
     logoWrapClassName:
       "relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border border-portfolio-body/25 bg-white p-2",
     imageClassName: "object-contain",
     bullets: [
-      "Migré y reestructuré el backend de PHP a FastAPI, logrando una mejora de hasta 40% en tiempos de respuesta y mayor escalabilidad del sistema.",
-      "Implementé un backoffice en Django, reduciendo en aproximadamente 30% los tiempos operativos del equipo administrativo mediante automatización de procesos internos.",
-      "Realicé mantenimiento y optimización del frontend, mejorando el rendimiento de carga en un 25% y reduciendo errores en producción en un 20%.",
-      "Diseñé e implementé nuevos módulos funcionales, incrementando la cobertura del sistema en un 35% y mejorando la experiencia de usuario en flujos clave.",
+      "Desarrollé módulos fullstack para reservas, disponibilidad, usuarios y procesos operativos clave.",
+      "Diseñé flujos backend para operaciones de alquiler, estados de reserva y administración interna.",
+      "Construí componentes frontend con React, Astro y Solid.js orientados a usuarios y administradores.",
+      "Optimizé el backoffice para reducir tareas manuales sobre vehículos, usuarios y reservas.",
+      "Colaboré en mantenimiento evolutivo priorizando rendimiento, seguridad y crecimiento sostenible.",
     ],
   },
   {
     id: "dxabstract",
-    title: "Desarrollador de software (Full Stack)",
-    company: "DxAbstract Colombia",
-    period: "Diciembre 2024 — agosto 2025",
+    title: "Fullstack Developer",
+    company: "DX Abstract",
+    period: "noviembre 2024 — enero 2025",
     imageSrc: "/isotipo.png",
-    imageAlt: "DxAbstract Logo",
+    imageAlt: "DX Abstract Logo",
     logoWrapClassName: "relative h-20 w-20 flex-shrink-0",
     imageClassName: "object-contain rounded-lg",
     bullets: [
-      "Desarrollo de IA experta en análisis de leyes Colombianas usando Azure Cognitive Services y GPT-4",
-      "Implementación de modelos NLP para consultas legales con 35% de precisión",
-      "Desarrollo de aplicaciones web con Next.js, mejorando la velocidad de carga en 20%",
-      "Creación de landing page con Astro, logrando puntaje perfecto en Lighthouse",
-      "Análisis de requisitos para sistema de gestión de parqueaderos",
+      "Participé en una plataforma de IA para análisis y consulta contextual de legislación colombiana con GPT-4, NLP y Azure Cognitive Services.",
+      "Diseñé APIs backend con Django REST Framework para procesamiento de consultas jurídicas.",
+      "Implementé flujos de recuperación contextual (RAG) para mejorar precisión de respuestas.",
+      "Modelé estructuras documentales en PostgreSQL/Supabase para búsquedas semánticas.",
+      "Colaboré en interfaces conversacionales tipo chatbot con Next.js.",
     ],
   },
 ];
@@ -152,12 +154,18 @@ function ProfessionalExperienceSection() {
           >
             <div className="flex items-start gap-6">
               <div className={exp.logoWrapClassName} aria-hidden>
-                <Image
-                  src={exp.imageSrc}
-                  alt={exp.imageAlt}
-                  fill
-                  className={exp.imageClassName}
-                />
+                {exp.imageSrc ? (
+                  <Image
+                    src={exp.imageSrc}
+                    alt={exp.imageAlt}
+                    fill
+                    className={exp.imageClassName}
+                  />
+                ) : (
+                  <span className="text-2xl font-bold text-portfolio-accent">
+                    {exp.logoInitial}
+                  </span>
+                )}
               </div>
               <div className="min-w-0 flex-grow">
                 <h3 className="text-xl font-semibold text-portfolio-accent">
@@ -345,12 +353,12 @@ export default function About() {
                 Alejandro Largo
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold text-portfolio-bright/90">
-                Frontend Developer · Software Engineer
+                Full Stack Engineer · AI Applications & Cloud
               </h2>
               <p className="text-portfolio-body text-lg">
-                Soy una persona que siempre está en continuo aprendizaje, con buenas habilidades de comunicación, 
-                creatividad, solución de problemas y trabajo en equipo. Me destaco por mi capacidad de adaptación 
-                y mi pasión por crear soluciones tecnológicas innovadoras y eficientes.
+                Software Engineer con experiencia construyendo productos SaaS, fintech y soluciones basadas en IA.
+                He liderado el desarrollo end-to-end de plataformas en producción, con foco en Python, Node.js,
+                Django, React, Next.js, PostgreSQL y AI Engineering (LLMs, RAG, embeddings).
               </p>
             </div>
           </div>
@@ -403,8 +411,18 @@ export default function About() {
                   skills: [
                     { name: "Git/GitHub", level: "Avanzado", icon: SiGithub },
                     { name: "Docker", level: "Intermedio", icon: SiDocker },
-                    { name: "AWS", level: "Básico", icon: FaAws },
+                    { name: "AWS", level: "Intermedio", icon: FaAws },
                     { name: "Linux", level: "Intermedio", icon: SiLinux }
+                  ]
+                },
+                {
+                  category: "AI & Automation",
+                  description: "LLMs, RAG y automatización inteligente",
+                  skills: [
+                    { name: "GPT-4 / LLMs", level: "Intermedio", icon: SiTypescript },
+                    { name: "RAG / Embeddings", level: "Intermedio", icon: FaDatabase },
+                    { name: "Azure Cognitive", level: "Intermedio", icon: FaAws },
+                    { name: "Prompt Engineering", level: "Intermedio", icon: SiJavascript }
                   ]
                 }
               ].map((category) => (

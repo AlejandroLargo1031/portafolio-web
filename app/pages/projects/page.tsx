@@ -7,8 +7,14 @@ import {
   SiPostgresql,
   SiTailwindcss,
   SiTypescript,
+  SiPrisma,
+  SiShadcnui,
+  SiSwagger,
 } from "react-icons/si";
 import { FaGithub } from "react-icons/fa";
+import { RiSupabaseLine } from "react-icons/ri";
+import { GrSecure } from "react-icons/gr";
+import { ImStatsBars } from "react-icons/im";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 
@@ -18,13 +24,15 @@ export default function Projects() {
       title: "Conqueror",
       description:
         "Aplicación web full-stack para gestión de hábitos, con autenticación segura, análisis de progreso y almacenamiento en la nube.",
-      caracteristicas: ["Dashboard personalizado con métricas de progreso",
+      caracteristicas: [
+        "Dashboard personalizado con métricas de progreso",
         "Sistema de seguimiento de hábitos con recordatorios",
         "Estadísticas y visualizaciones de progreso",
         "Autenticación y perfiles de usuario",
-        "Notificaciones y recordatorios personalizados"],
+        "Notificaciones y recordatorios personalizados",
+      ],
       image: "/app-dashboard.png",
-      demoUrl: "https://app-habitos-ruddy.vercel.app/",
+      demoUrl: "https://app-habitos-ruddy.vercel.app/" as string | null,
       githubUrl: "https://github.com/AlejandroLargo1031/App_Habitos",
       stack: [
         { name: "Next.js", icon: SiNextdotjs },
@@ -32,6 +40,32 @@ export default function Projects() {
         { name: "Django", icon: SiDjango },
         { name: "PostgreSQL", icon: SiPostgresql },
         { name: "Tailwind CSS", icon: SiTailwindcss },
+      ],
+    },
+    {
+      title: "Finances-App",
+      description:
+        "Sistema de gestión de ingresos y egresos con base de datos en la nube y panel de estadísticas en tiempo real.",
+      caracteristicas: [
+        "Autenticación y Autorización",
+        "Gestión de Ingresos y Egresos",
+        "Gestión de Usuarios (solo ADMIN)",
+        "Reportes Financieros (solo ADMIN)",
+        "Seguridad",
+      ],
+      image: "/app-finances.png",
+      demoUrl: null,
+      githubUrl: "https://github.com/AlejandroLargo1031/finances-prevalentware",
+      stack: [
+        { name: "Next.js", icon: SiNextdotjs },
+        { name: "TypeScript", icon: SiTypescript },
+        { name: "Supabase", icon: RiSupabaseLine },
+        { name: "Prisma", icon: SiPrisma },
+        { name: "Swagger", icon: SiSwagger },
+        { name: "ShadCN", icon: SiShadcnui },
+        { name: "Recharts", icon: ImStatsBars },
+        { name: "Tailwind", icon: SiTailwindcss },
+        { name: "Better-Auth", icon: GrSecure },
       ],
     },
   ];
@@ -105,33 +139,34 @@ export default function Projects() {
                       <FaGithub className="w-5 h-5" />
                       <span>Ver en GitHub</span>
                     </button>
-                    <button
-                      onClick={() => window.open(project.demoUrl, "_blank")}
-                      className="bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright px-4 py-2 rounded-full text-sm font-semibold"
-                    >
-                      Ver Demo
-                    </button>
+                    {project.demoUrl ? (
+                      <button
+                        onClick={() => window.open(project.demoUrl!, "_blank")}
+                        className="bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright px-4 py-2 rounded-full text-sm font-semibold"
+                      >
+                        Ver Demo
+                      </button>
+                    ) : null}
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          
         </div>
-        <div className="text-center mt-16 bg-portfolio-bg" >
-        <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep bg-clip-text text-transparent">
-          ¿Tienes un proyecto en mente?
-        </h2>
-        <p className="text-portfolio-body mb-8">
-          Estoy disponible para nuevos proyectos y colaboraciones.
-        </p>
-        <Link
-          href="/pages/contact"
-          className="inline-block px-8 py-3 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright rounded-full hover:opacity-90 transition-opacity"
-        >
-          Hablemos de tu proyecto
-        </Link>
-      </div>
+        <div className="text-center mt-16 bg-portfolio-bg">
+          <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep bg-clip-text text-transparent">
+            ¿Tienes un proyecto en mente?
+          </h2>
+          <p className="text-portfolio-body mb-8">
+            Estoy disponible para nuevos proyectos y colaboraciones.
+          </p>
+          <Link
+            href="/pages/contact"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright rounded-full hover:opacity-90 transition-opacity"
+          >
+            Hablemos de tu proyecto
+          </Link>
+        </div>
       </section>
     </>
   );

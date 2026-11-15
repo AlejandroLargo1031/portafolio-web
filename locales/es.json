@@ -1,0 +1,118 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "home": "Inicio",
+    "aboutPage": "Acerca de mí"
+  },
+  "a11y": {
+    "skip": "Saltar al contenido",
+    "home": "Inicio",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "sections": "Secciones",
+    "social": "Redes",
+    "companies": "Empresas",
+    "tech": "Tecnologías",
+    "stack": "Stack",
+    "language": "Idioma",
+    "switchToEs": "Cambiar a español",
+    "switchToEn": "Cambiar a inglés"
+  },
+  "hero": {
+    "eyebrow": "Full Stack Engineer · AI & Cloud",
+    "tagline": "Construyo productos SaaS, fintech y sistemas con IA: arquitectura, backend, frontend e infraestructura en producción.",
+    "ctaProjects": "Ver proyectos",
+    "ctaExperience": "Trayectoria",
+    "ctaResume": "Descargar CV",
+    "photoAlt": "Alejandro Largo"
+  },
+  "companies": {
+    "label": "Donde he aportado"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "subtitle": "Software · IA · Cloud",
+    "p1": "Software Engineer con experiencia construyendo productos SaaS, fintech y soluciones basadas en IA. He liderado el desarrollo end-to-end de plataformas en producción: arquitectura, backend, frontend, seguridad e infraestructura cloud.",
+    "p2": "Especializado en Python, Node.js, Django, React, Next.js y PostgreSQL. Hoy trabajo en Appsmart liderando Bitparner, y he aportado en Vende tu nave y DX Abstract.",
+    "p3": "Enfocado en AI Engineering: LLMs, RAG, embeddings, recuperación semántica, automatización inteligente y plataformas agentic donde convergen software, IA e infraestructura.",
+    "more": "Más detalles y skills"
+  },
+  "experience": {
+    "title": "Experiencia",
+    "subtitle": "Productos en producción, liderados de punta a punta: arquitectura, APIs, frontend e infraestructura."
+  },
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Productos que he construido de extremo a extremo.",
+    "viewAll": "Ver todos →",
+    "demo": "Ver demo",
+    "code": "Código",
+    "screenshotAlt": "Captura de {title}"
+  },
+  "cta": {
+    "title": "¿Construimos algo juntos?",
+    "body": "Estoy abierto a proyectos freelance y roles fullstack / AI engineering. Cuéntame tu idea y lo convertimos en un plan.",
+    "button": "Escribirme"
+  },
+  "footer": {
+    "text": "Diseñado y desarrollado por Alejandro Largo · Next.js + Tailwind"
+  },
+  "experiences": [
+    {
+      "id": "appsmart",
+      "period": "Oct 2025 — Presente",
+      "title": "Fullstack Engineer (Freelance)",
+      "company": "Appsmart · Bitparner",
+      "logo": "/appsmartt.jpeg",
+      "logoInitial": "A",
+      "logoBg": "bg-white",
+      "description": "Lideré el desarrollo end-to-end de Bitparner como único ingeniero: arquitectura modular para dominios financieros, APIs REST con Node.js/Express/PostgreSQL para flujos cripto-fiat, JWT y roles, auditoría, y despliegue productivo en DigitalOcean con Nginx, PM2 y Linux.",
+      "tech": ["React", "Node.js", "Express", "PostgreSQL", "DigitalOcean", "Nginx", "PM2", "JWT"]
+    },
+    {
+      "id": "vtn",
+      "period": "Ago 2025 — Ene 2026",
+      "title": "Fullstack Engineer (Freelance)",
+      "company": "Vende tu nave",
+      "logo": "/vtn.svg",
+      "logoInitial": "V",
+      "logoBg": "bg-white",
+      "description": "Desarrollé módulos fullstack para reservas, disponibilidad y usuarios. Diseñé flujos backend de alquiler y administración interna, componentes frontend con React/Astro/Solid, y optimicé el backoffice para reducir tareas manuales sobre vehículos, usuarios y reservas.",
+      "tech": ["React", "Astro", "Solid.js", "Deno", "Django", "PostgreSQL"]
+    },
+    {
+      "id": "dxabstract",
+      "period": "Nov 2024 — Ene 2025",
+      "title": "Fullstack Developer",
+      "company": "DX Abstract",
+      "logo": "/isotipo.png",
+      "logoInitial": "D",
+      "logoBg": "bg-portfolio-raised",
+      "description": "Participé en una plataforma de IA para consulta contextual de legislación colombiana con GPT-4, NLP y Azure Cognitive Services. APIs con Django REST, flujos RAG, modelado en PostgreSQL/Supabase e interfaces conversacionales con Next.js.",
+      "tech": ["Next.js", "Django", "PostgreSQL", "Supabase", "Azure", "GPT-4", "Astro"]
+    }
+  ],
+  "projectList": [
+    {
+      "id": "conqueror",
+      "title": "Conqueror",
+      "description": "App full-stack para gestión de hábitos: autenticación, dashboard con métricas, seguimiento con recordatorios y visualización de progreso.",
+      "image": "/app-dashboard.png",
+      "demoUrl": "https://app-habitos-ruddy.vercel.app/",
+      "githubUrl": "https://github.com/AlejandroLargo1031/App_Habitos",
+      "tech": ["Next.js", "TypeScript", "Django", "PostgreSQL", "Tailwind"]
+    },
+    {
+      "id": "finances",
+      "title": "Finances App",
+      "description": "Sistema de ingresos y egresos con autenticación, reportes financieros, roles de admin y panel de estadísticas en tiempo real.",
+      "image": "/app-finances.png",
+      "demoUrl": null,
+      "githubUrl": "https://github.com/AlejandroLargo1031/finances-prevalentware",
+      "tech": ["Next.js", "Supabase", "Prisma", "Better Auth", "Recharts"]
+    }
+  ]
+}
