@@ -50,8 +50,83 @@
     "viewAll": "View all →",
     "demo": "Live demo",
     "code": "Code",
-    "screenshotAlt": "Screenshot of {title}"
+    "screenshotAlt": "Screenshot of {title}",
+    "featuresTitle": "Key features",
+    "ctaTitle": "Have a project in mind?",
+    "ctaBody": "I'm available for new projects and collaborations.",
+    "ctaButton": "Let's talk about your project"
   },
+  "pages": {
+    "experience": {
+      "eyebrow": "Career",
+      "title": "Experience",
+      "subtitle": "Roles and products where I've led architecture, backend, frontend, and infrastructure.",
+      "educationTitle": "Education",
+      "skillsTitle": "Skills"
+    },
+    "contact": {
+      "eyebrow": "Let's talk",
+      "title": "Contact",
+      "subtitle": "Have a project in mind? I'm available for collaborations and new challenges.",
+      "phone": "Phone",
+      "email": "Email",
+      "location": "Location",
+      "availability": "Availability",
+      "locationValue": "Colombia",
+      "availabilityValue": "Open to freelance and full-time roles",
+      "socialTitle": "Social links"
+    }
+  },
+  "education": [
+    {
+      "id": "univalle",
+      "title": "Systems Technologist",
+      "org": "Universidad del Valle — Zarzal, Colombia",
+      "period": "2024",
+      "description": "Training focused on analysis, design, and development of technology solutions, with collaborative projects and research groups."
+    },
+    {
+      "id": "parquesoft",
+      "title": "Full Stack Development",
+      "org": "ParqueSoft TI",
+      "period": "2024 — 2025",
+      "description": "Seven-month hands-on program focused on end-to-end web solutions with frontend and backend technologies."
+    },
+    {
+      "id": "freecodecamp",
+      "title": "JavaScript Algorithms and Data Structures",
+      "org": "freeCodeCamp",
+      "period": "2024",
+      "description": "Algorithms and data structures with JavaScript."
+    }
+  ],
+  "skillGroups": [
+    {
+      "id": "frontend",
+      "title": "Frontend",
+      "items": ["React", "Next.js", "Astro", "Tailwind", "TypeScript"]
+    },
+    {
+      "id": "backend",
+      "title": "Backend",
+      "items": ["Node.js", "Django", "Express", "Deno"]
+    },
+    {
+      "id": "data",
+      "title": "Databases",
+      "items": ["PostgreSQL", "MongoDB", "MySQL", "Supabase"]
+    },
+    {
+      "id": "ai",
+      "title": "AI & Automation",
+      "items": ["GPT", "RAG", "Embeddings", "Azure Cognitive", "Prompt Engineering"]
+    },
+    {
+      "id": "devops",
+      "title": "DevOps",
+      "items": ["Docker", "Linux", "AWS", "Vercel", "Nginx", "PM2"]
+    }
+  ],
   "cta": {
     "title": "Shall we build something together?",
     "body": "I'm open to freelance projects and fullstack / AI engineering roles. Tell me your idea and we'll turn it into a plan.",
@@ -91,8 +166,8 @@
       "logo": "/isotipo.png",
       "logoInitial": "D",
       "logoBg": "bg-portfolio-raised",
-      "description": "Contributed to an AI platform for contextual consultation of Colombian legislation using GPT-4, NLP, and Azure Cognitive Services. Django REST APIs, RAG flows, PostgreSQL/Supabase modeling, and conversational interfaces with Next.js.",
-      "tech": ["Next.js", "Django", "PostgreSQL", "Supabase", "Azure", "GPT-4", "Astro"]
+      "description": "Contributed to an AI platform for contextual consultation of Colombian legislation using GPT, NLP, and Azure Cognitive Services. Django REST APIs, RAG flows, PostgreSQL/Supabase modeling, and conversational interfaces with Next.js.",
+      "tech": ["Next.js", "Django", "PostgreSQL", "Supabase", "Azure", "GPT", "Astro"]
     }
   ],
   "projectList": [
@@ -103,7 +178,13 @@
       "image": "/app-dashboard.png",
       "demoUrl": "https://app-habitos-ruddy.vercel.app/",
       "githubUrl": "https://github.com/AlejandroLargo1031/App_Habitos",
-      "tech": ["Next.js", "TypeScript", "Django", "PostgreSQL", "Tailwind"]
+      "tech": ["Next.js", "TypeScript", "Django", "PostgreSQL", "Tailwind"],
+      "features": [
+        "Custom dashboard with progress metrics",
+        "Habit tracking with reminders",
+        "Stats and visualizations",
+        "Authentication and user profiles"
+      ]
     },
     {
       "id": "finances",
@@ -112,7 +193,13 @@
       "image": "/app-finances.png",
       "demoUrl": null,
       "githubUrl": "https://github.com/AlejandroLargo1031/finances-prevalentware",
-      "tech": ["Next.js", "Supabase", "Prisma", "Better Auth", "Recharts"]
+      "tech": ["Next.js", "Supabase", "Prisma", "Better Auth", "Recharts"],
+      "features": [
+        "Authentication and authorization",
+        "Income and expense management",
+        "User management (ADMIN)",
+        "Financial reports"
+      ]
     }
   ]
 }

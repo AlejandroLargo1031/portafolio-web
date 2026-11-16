@@ -1,173 +1,176 @@
 "use client";
 
 import Image from "next/image";
-import {
-  SiNextdotjs,
-  SiDjango,
-  SiPostgresql,
-  SiTailwindcss,
-  SiTypescript,
-  SiPrisma,
-  SiShadcnui,
-  SiSwagger,
-} from "react-icons/si";
-import { FaGithub } from "react-icons/fa";
-import { RiSupabaseLine } from "react-icons/ri";
-import { GrSecure } from "react-icons/gr";
-import { ImStatsBars } from "react-icons/im";
 import Link from "next/link";
-import Navbar from "@/app/components/Navbar";
+import { FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6";
+import SiteShell from "@/app/components/SiteShell";
+import Reveal from "@/app/components/Reveal";
+import { useI18n } from "@/app/i18n/I18nProvider";
 
 export default function Projects() {
-  const projects = [
-    {
-      title: "Conqueror",
-      description:
-        "Aplicación web full-stack para gestión de hábitos, con autenticación segura, análisis de progreso y almacenamiento en la nube.",
-      caracteristicas: [
-        "Dashboard personalizado con métricas de progreso",
-        "Sistema de seguimiento de hábitos con recordatorios",
-        "Estadísticas y visualizaciones de progreso",
-        "Autenticación y perfiles de usuario",
-        "Notificaciones y recordatorios personalizados",
-      ],
-      image: "/app-dashboard.png",
-      demoUrl: "https://app-habitos-ruddy.vercel.app/" as string | null,
-      githubUrl: "https://github.com/AlejandroLargo1031/App_Habitos",
-      stack: [
-        { name: "Next.js", icon: SiNextdotjs },
-        { name: "TypeScript", icon: SiTypescript },
-        { name: "Django", icon: SiDjango },
-        { name: "PostgreSQL", icon: SiPostgresql },
-        { name: "Tailwind CSS", icon: SiTailwindcss },
-      ],
-    },
-    {
-      title: "Finances-App",
-      description:
-        "Sistema de gestión de ingresos y egresos con base de datos en la nube y panel de estadísticas en tiempo real.",
-      caracteristicas: [
-        "Autenticación y Autorización",
-        "Gestión de Ingresos y Egresos",
-        "Gestión de Usuarios (solo ADMIN)",
-        "Reportes Financieros (solo ADMIN)",
-        "Seguridad",
-      ],
-      image: "/app-finances.png",
-      demoUrl: null,
-      githubUrl: "https://github.com/AlejandroLargo1031/finances-prevalentware",
-      stack: [
-        { name: "Next.js", icon: SiNextdotjs },
-        { name: "TypeScript", icon: SiTypescript },
-        { name: "Supabase", icon: RiSupabaseLine },
-        { name: "Prisma", icon: SiPrisma },
-        { name: "Swagger", icon: SiSwagger },
-        { name: "ShadCN", icon: SiShadcnui },
-        { name: "Recharts", icon: ImStatsBars },
-        { name: "Tailwind", icon: SiTailwindcss },
-        { name: "Better-Auth", icon: GrSecure },
-      ],
-    },
-  ];
+  const { t, messages } = useI18n();
+  const projects = messages.projectList;
 
   return (
-    <>
-      <Navbar />
-      <section className="py-16 bg-portfolio-bg" id="projects">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep bg-clip-text text-transparent">
-              Mis Proyectos
-            </h1>
-            <p className="text-portfolio-body text-lg max-w-2xl mx-auto">
-              Explora mi portafolio de proyectos donde aplico mis habilidades y
-              conocimientos en desarrollo web.
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="block bg-portfolio-surface rounded-xl overflow-hidden hover:scale-105 transition-transform"
-              >
-                <div className="relative h-64 w-full">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-contain bg-portfolio-bg"
-                  />
-                </div>
+    <SiteShell>
+      <main className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-24">
+        <Reveal>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-portfolio-accent">
+            {t("nav.projects")}
+          </p>
+          <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-portfolio-bright sm:text-5xl">
+            {t("projects.title")}
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-portfolio-body">
+            {t("projects.subtitle")}
+          </p>
+        </Reveal>
 
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-portfolio-bright mb-2">
-                    {project.title}
-                  </h2>
-                  <p className="text-portfolio-body mb-4">{project.description}</p>
+        <div className="mt-16 space-y-20">
+          {projects.map((project, i) => {
+            const reverse = i % 2 === 1;
+            const screenshotAlt = t("projects.screenshotAlt", {
+              title: project.title,
+            });
+            return (
+              <Reveal key={project.id} delay={0.05}>
+                <article
+                  className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
+                    reverse ? "lg:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  {project.demoUrl ? (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative block aspect-[16/10] overflow-hidden bg-portfolio-surface"
+                    >
+                      <Image
+                        src={project.image}
+                        alt={screenshotAlt}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-portfolio-bg/50 via-transparent to-portfolio-accent/10 opacity-80 transition-opacity group-hover:opacity-60"
+                        aria-hidden
+                      />
+                    </a>
+                  ) : (
+                    <div className="relative aspect-[16/10] overflow-hidden bg-portfolio-surface">
+                      <Image
+                        src={project.image}
+                        alt={screenshotAlt}
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-portfolio-bg/50 via-transparent to-portfolio-accent/10 opacity-80"
+                        aria-hidden
+                      />
+                    </div>
+                  )}
 
-                  <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-portfolio-accent mb-2">
-                      Características Principales
-                    </h3>
-                    <ul className="list-disc list-inside text-portfolio-bright/90 space-y-1">
-                      {project.caracteristicas.map((caracteristica, i) => (
-                        <li key={i}>{caracteristica}</li>
+                  <div>
+                    <h2 className="font-display text-2xl font-semibold text-portfolio-bright">
+                      {project.demoUrl ? (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 transition-colors hover:text-portfolio-accent"
+                        >
+                          {project.title}
+                          <FaArrowUpRightFromSquare
+                            className="h-3.5 w-3.5"
+                            aria-hidden
+                          />
+                        </a>
+                      ) : (
+                        <span>{project.title}</span>
+                      )}
+                    </h2>
+                    <p className="mt-3 leading-relaxed text-portfolio-body">
+                      {project.description}
+                    </p>
+
+                    {project.features?.length ? (
+                      <div className="mt-5">
+                        <h3 className="text-sm font-semibold text-portfolio-accent">
+                          {t("projects.featuresTitle")}
+                        </h3>
+                        <ul className="mt-2 space-y-1.5 text-sm text-portfolio-body">
+                          {project.features.map((feature) => (
+                            <li key={feature} className="flex gap-2">
+                              <span className="text-portfolio-accent" aria-hidden>
+                                ·
+                              </span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    <ul
+                      className="mt-5 flex flex-wrap gap-2"
+                      aria-label={t("a11y.stack")}
+                    >
+                      {project.tech.map((tech) => (
+                        <li key={tech}>
+                          <span className="tech-chip">{tech}</span>
+                        </li>
                       ))}
                     </ul>
-                  </div>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.stack.map((tech, i) => {
-                      const Icon = tech.icon;
-                      return (
-                        <span
-                          key={i}
-                          className="flex items-center gap-1 bg-portfolio-raised text-portfolio-bright/85 px-3 py-1 rounded-full text-xs"
+                    <div className="mt-6 flex flex-wrap gap-4 text-sm">
+                      {project.demoUrl ? (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-portfolio-accent hover:text-portfolio-bright"
                         >
-                          <Icon className="w-4 h-4" />
-                          {tech.name}
-                        </span>
-                      );
-                    })}
-                  </div>
-
-                  <div className="flex justify-between items-center">
-                    <button
-                      onClick={() => window.open(project.githubUrl, "_blank")}
-                      className="flex items-center space-x-2 text-portfolio-body hover:text-portfolio-accent transition-colors"
-                    >
-                      <FaGithub className="w-5 h-5" />
-                      <span>Ver en GitHub</span>
-                    </button>
-                    {project.demoUrl ? (
-                      <button
-                        onClick={() => window.open(project.demoUrl!, "_blank")}
-                        className="bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright px-4 py-2 rounded-full text-sm font-semibold"
+                          {t("projects.demo")}
+                        </a>
+                      ) : null}
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-portfolio-body hover:text-portfolio-accent"
                       >
-                        Ver Demo
-                      </button>
-                    ) : null}
+                        <FaGithub className="h-4 w-4" />
+                        {t("projects.code")}
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <Reveal>
+          <div className="mt-20 border-t border-portfolio-bright/5 pt-16 text-center">
+            <h2 className="font-display text-2xl font-bold text-portfolio-bright">
+              {t("projects.ctaTitle")}
+            </h2>
+            <p className="mx-auto mt-4 max-w-lg text-portfolio-body">
+              {t("projects.ctaBody")}
+            </p>
+            <Link
+              href="/pages/contact"
+              className="mt-8 inline-block rounded-md bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep px-6 py-3 text-sm font-semibold text-portfolio-bright transition-opacity hover:opacity-90"
+            >
+              {t("projects.ctaButton")}
+            </Link>
           </div>
-        </div>
-        <div className="text-center mt-16 bg-portfolio-bg">
-          <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep bg-clip-text text-transparent">
-            ¿Tienes un proyecto en mente?
-          </h2>
-          <p className="text-portfolio-body mb-8">
-            Estoy disponible para nuevos proyectos y colaboraciones.
-          </p>
-          <Link
-            href="/pages/contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-portfolio-accent to-portfolio-accent-deep text-portfolio-bright rounded-full hover:opacity-90 transition-opacity"
-          >
-            Hablemos de tu proyecto
-          </Link>
-        </div>
-      </section>
-    </>
+        </Reveal>
+      </main>
+    </SiteShell>
   );
 }
